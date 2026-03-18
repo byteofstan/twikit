@@ -88,9 +88,19 @@ class GuestClient:
         self.proxy = proxy
 
         self._token = TOKEN
-        self._user_agent = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                            'AppleWebKit/537.36 (KHTML, like Gecko) '
-                            'Chrome/122.0.0.0 Safari/537.36')
+        # self._user_agent = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+        #                     'AppleWebKit/537.36 (KHTML, like Gecko) '
+        #                     'Chrome/122.0.0.0 Safari/537.36')
+        import random
+
+        USER_AGENTS = [
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36',
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124.0.0.0 Safari/537.36'
+        ]
+
+        self._user_agent = random.choice(USER_AGENTS)
+
         self._guest_token: str | None = None  # set when activate method is called
         self.gql = GQLClient(self)
         self.v11 = V11Client(self)
